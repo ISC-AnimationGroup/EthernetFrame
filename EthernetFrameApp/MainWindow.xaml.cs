@@ -28,7 +28,7 @@ namespace EthernetFrameApp
             InitializeComponent();
         }
 
-        private void bt_close_MouseUp(object sender, MouseButtonEventArgs e)
+        private void bt_close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -70,6 +70,14 @@ namespace EthernetFrameApp
                         this.Width = LastWidth;
                         this.Height = LastHeight;
                     }
+                    else
+                    {
+                        MessageBoxResult result = MessageBox.Show("Anwendung beenden?", "Beenden?", MessageBoxButton.YesNo);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            this.Close();
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -83,6 +91,11 @@ namespace EthernetFrameApp
                 LastWidth = e.NewSize.Width;
                 LastHeight = e.NewSize.Height;
             }
+        }
+
+        private void bt_settings_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new Pages.SettingsPage());
         }
     }
 }

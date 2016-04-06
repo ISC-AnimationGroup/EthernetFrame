@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EthernetFrameApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -22,14 +22,15 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <local:SimpleButton Text="Ethernet Frame" Background="WhiteSmoke"/>
-                <local:SimpleButton Text="Tagged Uplink" Grid.Row="2" Background="#FFCDCDCD"/>
-                <local:SimpleButton Text="Portbased Tagging" Grid.Row="1" Background="#FFE0E0E0"/>
+                <Button x:Name="button1" Content="Ethernet Frame" Style="{DynamicResource ButtonStyle1}"/>
+                <Button x:Name="button2" Content="Tagged Uplink" Style="{DynamicResource ButtonStyle1}" Grid.Row="1"/>
+                <Button x:Name="button3" Content="Portbased Tagging" Style="{DynamicResource ButtonStyle1}" Grid.Row="2"/>
             </Grid>
-            <MediaElement x:Name="mediaElement" Grid.Column="1" Source="C:\Users\Public\Videos\Sample Videos\Natur.wmv"/>
+            <Frame x:Name="frame" Content="PageFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <local:SimpleButton x:Name="bt_close" Text="Beenden" Background="#FFB4B4B4" MouseUp="bt_close_MouseUp" Width="120"/>
+            <Button x:Name="bt_close" Content="Beenden" Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Click="bt_close_Click" Width="120"/>
+            <Button x:Name="bt_settings" Content="Einstellungen" Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Width="120" Click="bt_settings_Click"/>
         </StackPanel>
 
     </Grid>

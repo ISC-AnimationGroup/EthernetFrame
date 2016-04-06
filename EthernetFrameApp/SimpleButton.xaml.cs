@@ -35,5 +35,10 @@ namespace EthernetFrameApp
             InitializeComponent();
             (this.Content as FrameworkElement).DataContext = this;
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
