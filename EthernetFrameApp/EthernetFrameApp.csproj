@@ -49,8 +49,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SideButton.xaml.cs">
-      <DependentUpon>SideButton.xaml</DependentUpon>
+    <Compile Include="SimpleButton.xaml.cs">
+      <DependentUpon>SimpleButton.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -64,7 +64,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SideButton.xaml">
+    <Page Include="SimpleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 namespace EthernetFrameApp
 {
     /// <summary>
-    /// Interaktionslogik für SideButton.xaml
+    /// Interaktionslogik für SimpleButton.xaml
     /// </summary>
-    public partial class SideButton : UserControl
+    public partial class SimpleButton : UserControl
     {
         public string Text
         {
@@ -27,10 +27,9 @@ namespace EthernetFrameApp
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(SideButton), new PropertyMetadata("Text"));
+            DependencyProperty.Register("Text", typeof(string), typeof(SimpleButton), new PropertyMetadata("Text"));
 
-
-        public SideButton()
+        public SimpleButton()
         {
             InitializeComponent();
             (this.Content as FrameworkElement).DataContext = this;
