@@ -246,8 +246,6 @@ ModelManifest.xml
 
 # Other files
 desktop.ini
-*.avi
 *.wmv
 *.mpg
 *.mpeg
-*.mp4

@@ -53,21 +53,21 @@ namespace EthernetFrameApp.Pages
             InitializeComponent();
             this.DataContext = this;
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Properties.Resources.Animation1);
-            XmlElement root = doc.DocumentElement;
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load(Properties.Resources.Animation1);
+            //XmlElement root = doc.DocumentElement;
 
-            foreach (XmlNode node in root)
-            {
-                AnimInfoListBoxItem infoItem = new AnimInfoListBoxItem();
-                infoItem.Header = node["header"].InnerText;
-                infoItem.ContentText = node["content"].InnerText;
-                AnimInfoList.Add(infoItem);
-            }
+            //foreach (XmlNode node in root)
+            //{
+            //    AnimInfoListBoxItem infoItem = new AnimInfoListBoxItem();
+            //    infoItem.Header = node["header"].InnerText;
+            //    infoItem.ContentText = node["content"].InnerText;
+            //    AnimInfoList.Add(infoItem);
+            //}
 
             // TODO: fix
             mediaElement.BeginInit();
-            mediaElement.Source = new Uri(string.Format("Animations\\{0}.avi", animationCase), UriKind.Relative);
+            mediaElement.Source = new Uri(string.Format("Animations\\videoplayback{0}.mp4", animationCase), UriKind.Relative);
             mediaElement.EndInit();
             mediaElement.Play();
             animationIsPlaying = true;
@@ -95,7 +95,7 @@ namespace EthernetFrameApp.Pages
 
         private bool animationIsPlaying = false;
 
-        private void Page_KeyDown(object sender, KeyEventArgs e)
+        public void Page_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {
@@ -110,11 +110,11 @@ namespace EthernetFrameApp.Pages
                             mediaElement.Pause();
                             animationIsPlaying = false;
                         }
-                        else
-                        {
-                            mediaElement.Play();
-                            animationIsPlaying = true;
-                        }
+                    }
+                    else
+                    {
+                        mediaElement.Play();
+                        animationIsPlaying = true;
                     }
                     break;
                 case Key.Left:

@@ -58,7 +58,6 @@ namespace EthernetFrameApp
                         this.Width = LastWidth;
                         this.Height = LastHeight;
                     }
-
                     break;
                 case Key.Escape:
                     if (this.Topmost == true)
@@ -81,6 +80,13 @@ namespace EthernetFrameApp
                     break;
                 default:
                     break;
+            }
+
+            if (frame.Content.GetType() == typeof(Pages.AnimationPage))
+            {
+                // KeyDown-Event an die im Frame geladene Page weiterleiten
+                Pages.AnimationPage page = (frame.Content as Pages.AnimationPage);
+                page.Page_KeyDown(sender, e);
             }
         }
 
