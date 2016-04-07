@@ -36,7 +36,9 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
+                            <Grid Background="{TemplateBinding Foreground}">
+                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" Foreground="Black"/>
+                            </Grid>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="True"/>

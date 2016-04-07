@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EthernetFrameApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" KeyDown="Window_KeyDown">
+        Title="MainWindow" Height="600" Width="800" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -22,16 +22,25 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button x:Name="button1" Content="Ethernet Frame" Style="{DynamicResource ButtonStyle1}"/>
-                <Button x:Name="button2" Content="Tagged Uplink" Style="{DynamicResource ButtonStyle1}" Grid.Row="1"/>
-                <Button x:Name="button3" Content="Portbased Tagging" Style="{DynamicResource ButtonStyle1}" Grid.Row="2"/>
+                <Button x:Name="bt_anim1" Content="Ethernet Frame" Style="{DynamicResource ButtonStyle1}" Foreground="{x:Null}" Click="bt_anim1_Click"/>
+                <Button x:Name="bt_anim2" Content="Tagged Uplink" Style="{DynamicResource ButtonStyle1}" Grid.Row="1" Foreground="{x:Null}" Click="bt_anim2_Click"/>
+                <Button x:Name="bt_anim3" Content="Portbased Tagging" Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Foreground="{x:Null}" Click="bt_anim3_Click"/>
             </Grid>
             <Frame x:Name="frame" Content="PageFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
         </Grid>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button x:Name="bt_close" Content="Beenden" Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Click="bt_close_Click" Width="120"/>
-            <Button x:Name="bt_settings" Content="Einstellungen" Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Width="120" Click="bt_settings_Click"/>
-        </StackPanel>
+        <Grid Grid.Row="1" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="bt_close" Content="Beenden" Style="{DynamicResource ButtonStyle1}" Click="bt_close_Click" Foreground="{x:Null}"/>
+            <Button x:Name="bt_settings" Style="{DynamicResource ButtonStyle1}" Click="bt_settings_Click" Grid.Column="2" FontFamily="Segoe UI Symbol">
+                <Button.Foreground>
+                    <ImageBrush ImageSource="Icons/IC809455.png" Stretch="Uniform"/>
+                </Button.Foreground>
+            </Button>
 
+        </Grid>
     </Grid>
 </Window>
