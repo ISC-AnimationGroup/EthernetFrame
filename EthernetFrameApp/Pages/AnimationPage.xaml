@@ -14,7 +14,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="tb_title" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Ethernet-Frame im Netzwerk" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="46"/>
-        <MediaElement x:Name="mediaElement" Grid.Row="1" LoadedBehavior="Manual" Source="../Animations/drop.avi"/>
+        <MediaElement x:Name="mediaElement" Grid.Row="1" LoadedBehavior="Manual" />
         <Grid x:Name="g_playerControls" Height="50" Margin="0,0,0,-50" Grid.Row="1" VerticalAlignment="Bottom" Background="#FFA45A5A"/>
         <Grid x:Name="g_animationInfo" HorizontalAlignment="Right" Margin="0" Grid.Row="1" Width="200" Background="#3300FF00">
             <ListView x:Name="lv_animInfos" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" SelectionChanged="lv_animInfos_SelectionChanged" ItemsSource="{Binding AnimInfoList}">

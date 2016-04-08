@@ -67,7 +67,7 @@ namespace EthernetFrameApp.Pages
 
             // TODO: fix
             mediaElement.BeginInit();
-            mediaElement.Source = new Uri(string.Format("Animations\\videoplayback{0}.mp4", animationCase), UriKind.Relative);
+            mediaElement.Source = new Uri(string.Format("Animations/videoplayback{0}.mp4", animationCase), UriKind.Relative);
             mediaElement.EndInit();
             mediaElement.Play();
             animationIsPlaying = true;
