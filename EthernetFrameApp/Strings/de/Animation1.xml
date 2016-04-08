@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <allsteps>
-  <step trigger="0">
+  <step trigger="00:00:00">
     <header>Header 1</header>
     <content>Lorem ipsum dolor sit amet</content>
   </step>
-  <step trigger="0:12">
+  <step trigger="00:00:12">
     <header>Header 2</header>
     <content>Lorem ipsum dolor sit amet 2</content>
   </step>

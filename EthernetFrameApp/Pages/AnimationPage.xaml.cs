@@ -1,10 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using EthernetFrameApp.Classes;
 using System.Collections.ObjectModel;
+using System.Xml;
 
 namespace EthernetFrameApp.Pages
 {
@@ -43,22 +53,39 @@ namespace EthernetFrameApp.Pages
             InitializeComponent();
             this.DataContext = this;
 
-            //XmlDocument doc = new XmlDocument();
-            //doc.Load(Properties.Resources.Animation1);
-            //XmlElement root = doc.DocumentElement;
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(string.Format("Strings\\de\\Animation{0}.xml", animationCase));
+                XmlElement root = doc.DocumentElement;
 
-            //foreach (XmlNode node in root)
-            //{
-            //    AnimInfoListBoxItem infoItem = new AnimInfoListBoxItem();
-            //    infoItem.Header = node["header"].InnerText;
-            //    infoItem.ContentText = node["content"].InnerText;
-            //    AnimInfoList.Add(infoItem);
-            //}
+                foreach (XmlNode node in root)
+                {
+                    AnimInfoListBoxItem infoItem = new AnimInfoListBoxItem();
+                    TimeSpan trigger;
+                    infoItem.Header = node["header"].InnerText;
+                    infoItem.ContentText = node["content"].InnerText;
+                    if (TimeSpan.TryParse(node.Attributes["trigger"].Value, out trigger))
+                    {
+                        infoItem.OpenTrigger = trigger;
+                    }
+                    AnimInfoList.Add(infoItem);
+                }
+            }
+            catch (Exception)
+            {
+                // xml not found / not access
+            }
 
             // TODO: fix
             mediaElement.BeginInit();
             mediaElement.Source = new Uri(string.Format("Animations/videoplayback{0}.mp4", animationCase), UriKind.Relative);
             mediaElement.EndInit();
+
+            if (AnimInfoList.Count > 0)
+            {
+
+            }
             mediaElement.Play();
             animationIsPlaying = true;
         }

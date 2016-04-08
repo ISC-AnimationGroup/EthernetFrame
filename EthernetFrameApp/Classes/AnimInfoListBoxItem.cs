@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -9,7 +11,7 @@ namespace EthernetFrameApp.Classes
     {
         private Visibility contentVisible;
         private string header;
-        private int openTrigger;
+        private TimeSpan openTrigger;
         private string contentText;
 
         public Visibility ContentVisible
@@ -36,7 +38,7 @@ namespace EthernetFrameApp.Classes
                 }
             }
         }
-        public int OpenTrigger
+        public TimeSpan OpenTrigger
         {
             get { return openTrigger; }
             set { openTrigger = value; }
@@ -51,7 +53,7 @@ namespace EthernetFrameApp.Classes
         public AnimInfoListBoxItem()
         {
             ContentVisible = Visibility.Collapsed;
-            OpenTrigger = -1;
+            OpenTrigger = new TimeSpan(0,0,-1);
         }
 
         public void Open()
