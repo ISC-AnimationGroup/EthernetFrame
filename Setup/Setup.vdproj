@@ -15,26 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_96D4B9D90070269369AA8C8E867EA5B1"
-        "OwnerKey" = "8:_BD72C967615741F2B07AE496D82ED092"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BD72C967615741F2B07AE496D82ED092"
+        "MsmKey" = "8:_14EC2C06789E464EBF6C7E1468A8BE9B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_96D4B9D90070269369AA8C8E867EA5B1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BD72C967615741F2B07AE496D82ED092"
+        "OwnerKey" = "8:_14EC2C06789E464EBF6C7E1468A8BE9B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -64,10 +52,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
                     }
                 }
             }
@@ -87,6 +75,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -108,7 +112,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
+                "FrameworkVersion" = "8:.NETFramework,Version=v3.5"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -116,37 +120,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_96D4B9D90070269369AA8C8E867EA5B1"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_96D4B9D90070269369AA8C8E867EA5B1"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E701327D68E746E2984DDAF9170ED4BE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -204,7 +177,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ethernet-Frame Animation"
         "ProductCode" = "8:{536F846C-967A-4D5A-BEB0-CCBBA6770BDA}"
-        "PackageCode" = "8:{A7D45527-5841-4EB1-B7DD-BEC010140573}"
+        "PackageCode" = "8:{C0E1D6A6-6CBF-42E9-96E0-5E2A13B5674B}"
         "UpgradeCode" = "8:{A2E26F82-C3E0-4737-B391-A76222F1DE01}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -219,7 +192,7 @@
         "Subject" = "8:"
         "ARPCONTACT" = "8:Martin Schneider, Sandro Moschkau, Florian Loos"
         "Keywords" = "8:Ethernet frame learning school lernen schule Ethernet-Frame ISC"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Lernsoftware entwickelt im Rahmen des Team-Projektes der ITF14A an der Industrieschule Chemnitz"
         "ARPURLINFOABOUT" = "8:http://www.industrieschule.de/"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -324,6 +297,34 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_73639C6C8605403B8FAD271AC074301A"
+            {
+            "Name" = "8:Ethernet-Frame Animation"
+            "Arguments" = "8:"
+            "Description" = "8:Start Ethernet-Frame Animation App"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:"
+            "Folder" = "8:_5E0016FD31814585AF085F9D84D80770"
+            "WorkingFolder" = "8:_E701327D68E746E2984DDAF9170ED4BE"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7ECE0808989848939A26D8A78B87FE74"
+            {
+            "Name" = "8:Ethernet-Frame Animation"
+            "Arguments" = "8:"
+            "Description" = "8:Start Ethernet-Frame Animation App"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_14EC2C06789E464EBF6C7E1468A8BE9B"
+            "Folder" = "8:_3D1975C5FABD408193FC76AB61B52110"
+            "WorkingFolder" = "8:_E701327D68E746E2984DDAF9170ED4BE"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -723,7 +724,35 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_95EF41470BE046F188AAA09D38E9FBCB"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_14EC2C06789E464EBF6C7E1468A8BE9B"
+            {
+            "SourcePath" = "8:..\\EthernetFrameApp\\obj\\Release\\EthernetFrameApp.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E701327D68E746E2984DDAF9170ED4BE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{1725C7B4-D2BD-44AF-AAB9-DAA88AED6253}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E39CAB05500B40F7BC25CE383D7B06AE"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -745,34 +774,6 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{1725C7B4-D2BD-44AF-AAB9-DAA88AED6253}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BD72C967615741F2B07AE496D82ED092"
-            {
-            "SourcePath" = "8:..\\EthernetFrameApp\\obj\\Debug\\EthernetFrameApp.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E701327D68E746E2984DDAF9170ED4BE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{1725C7B4-D2BD-44AF-AAB9-DAA88AED6253}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"

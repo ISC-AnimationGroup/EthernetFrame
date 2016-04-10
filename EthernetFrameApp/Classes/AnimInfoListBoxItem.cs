@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -30,7 +27,7 @@ namespace EthernetFrameApp.Classes
                 if (header != value)
                 {
                     header = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("Header");
                 }
             }
         }
@@ -53,7 +50,7 @@ namespace EthernetFrameApp.Classes
                 if (contentVisible != value)
                 {
                     contentVisible = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("ContentVisible");
                 }
             }
         }
@@ -65,7 +62,7 @@ namespace EthernetFrameApp.Classes
                 if (icon != value)
                 {
                     icon = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("Icon");
                 }
             }
         }
@@ -77,7 +74,7 @@ namespace EthernetFrameApp.Classes
                 if (HeaderColor != value)
                 {
                     headerColor = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("HeaderColor");
                 }
             }
         }
@@ -105,7 +102,7 @@ namespace EthernetFrameApp.Classes
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        private void NotifyPropertyChanged(String propertyName = "")
         {
             if (PropertyChanged != null)
             {

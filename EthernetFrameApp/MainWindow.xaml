@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EthernetFrameApp"
         xmlns:extensions="clr-namespace:EthernetFrameApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" KeyDown="Window_KeyDown">
+        Title="MainWindow" Height="600" Width="800" KeyDown="Window_KeyDown" Icon="Icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

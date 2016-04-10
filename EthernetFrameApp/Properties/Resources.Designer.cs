@@ -63,15 +63,21 @@ namespace EthernetFrameApp.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;allsteps&gt;
-        ///  &lt;step trigger=&quot;0&quot;&gt;
-        ///    &lt;header&gt;Header 1&lt;/header&gt;
+        ///  &lt;step trigger=&quot;00:00:00.000&quot;&gt;
+        ///    &lt;header&gt;Set a goal&lt;/header&gt;
         ///    &lt;content&gt;Lorem ipsum dolor sit amet&lt;/content&gt;
         ///  &lt;/step&gt;
-        ///  &lt;step trigger=&quot;0:12&quot;&gt;
-        ///    &lt;header&gt;Header 2&lt;/header&gt;
+        ///  &lt;step trigger=&quot;00:00:06.600&quot;&gt;
+        ///    &lt;header&gt;Work Hard&lt;/header&gt;
         ///    &lt;content&gt;Lorem ipsum dolor sit amet 2&lt;/content&gt;
         ///  &lt;/step&gt;
-        ///&lt;/allsteps&gt; ähnelt.
+        ///  &lt;step trigger=&quot;00:00:13.900&quot;&gt;
+        ///    &lt;header&gt;Practise&lt;/header&gt;
+        ///    &lt;content&gt;Lorem ipsum dolor sit amet 2&lt;/content&gt;
+        ///  &lt;/step&gt;
+        ///  &lt;step trigger=&quot;00:00:24.900&quot;&gt;
+        ///    &lt;header&gt;Dont be afraid&lt;/header&gt;
+        ///     [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string Animation1 {
             get {
