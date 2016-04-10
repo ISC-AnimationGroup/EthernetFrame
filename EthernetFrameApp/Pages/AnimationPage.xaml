@@ -10,37 +10,54 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="113"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="tb_title" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Ethernet-Frame im Netzwerk" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="46"/>
-        <MediaElement x:Name="mediaElement" Grid.Row="1" LoadedBehavior="Manual" IsMuted="True" />
-        <Grid x:Name="g_playerControls" Height="50" Margin="0,0,0,-50" Grid.Row="1" VerticalAlignment="Bottom" Background="#FFA45A5A"/>
-        <Grid x:Name="g_animationInfo" HorizontalAlignment="Right" Margin="0" Grid.Row="1" Width="200" Background="#3300FF00">
-            <ListView x:Name="lv_animInfos" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" SelectionChanged="lv_animInfos_SelectionChanged" ItemsSource="{Binding AnimInfoList}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+        <TextBlock x:Name="tb_title" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="Ethernet-Frame im Netzwerk" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="46" Foreground="#FF303F9F"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <MediaElement x:Name="mediaElement" Grid.Row="1" LoadedBehavior="Manual" IsMuted="True" />
+            <Grid x:Name="g_animationInfo" Grid.Column="1" HorizontalAlignment="Right" Margin="0" Grid.Row="1" Width="200" Background="White">
+                <ListView x:Name="lv_animInfos" Background="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" SelectionChanged="lv_animInfos_SelectionChanged" ItemsSource="{Binding AnimInfoList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
                             <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="58"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="30"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,-2,0,0" TextWrapping="Wrap" Text="{Binding Header}" VerticalAlignment="Center" FontSize="20"/>
-                                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Source="/EthernetFrameApp;component/Icons/Right-64.png"/>
+                                <ContentPresenter Grid.ColumnSpan="2" Grid.RowSpan="2" Content=""></ContentPresenter>
+                                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Source="{Binding Icon}"/>
+                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,-2,0,0" TextWrapping="Wrap" Text="{Binding Header}" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="{Binding HeaderColor}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,-11,0,10" TextWrapping="Wrap" Text="{Binding ContentText}" Visibility="{Binding ContentVisible}" MaxWidth="200" />
                             </Grid>
-                            <Grid Margin="0" Grid.Row="1" Visibility="{Binding ContentVisible}">
-                                <TextBlock HorizontalAlignment="Left" Margin="10,10,0,10" TextWrapping="Wrap" Text="{Binding ContentText}" VerticalAlignment="Top"/>
-                            </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <Border Name="border" BorderBrush="#FFB6B6B6" BorderThickness="0,0,0,1">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
         </Grid>
+        
+        <Grid x:Name="g_playerControls" Height="50" Margin="0,0,0,-50" Grid.Row="1" VerticalAlignment="Bottom" Background="#FFA45A5A"/>
 
     </Grid>
 </Page>

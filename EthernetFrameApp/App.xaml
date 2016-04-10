@@ -5,47 +5,57 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
-        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+        <Style x:Key="ToggleButtonStyle_Side" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid x:Name="grid">
+                            <ContentPresenter Content=""/>
+                            <TextBlock x:Name="textBlock" Text="{TemplateBinding Content}" HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="18" TextAlignment="Center" Foreground="#FFC5CAE9"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="true"/>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Background" TargetName="grid" Value="#FF222C70"/>
+                                <Setter Property="Foreground" TargetName="textBlock" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="grid" Value="#FF4452A8"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" TargetName="textBlock" Value="#FFC5CAE9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ButtonStyle_Bottom" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid x:Name="grid" Background="#B26BB0EA">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver">
-                                        <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid">
-                                                <EasingColorKeyFrame KeyTime="0" Value="#E56BB0EA"/>
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid">
-                                                <EasingColorKeyFrame KeyTime="0" Value="#FF6BB0EA"/>
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled">
-                                        <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid">
-                                                <EasingColorKeyFrame KeyTime="0" Value="#B2C1C1C1"/>
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Grid Background="{TemplateBinding Foreground}">
-                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" Foreground="Black"/>
-                            </Grid>
+                        <Grid x:Name="grid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Content="" Grid.ColumnSpan="2"/>
+                            <Image Source="{TemplateBinding Tag}" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock x:Name="textBlock" Grid.Column="1" Text="{TemplateBinding Content}" Margin="0,0,10,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" FontSize="18" Foreground="#FFC5CAE9"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsFocused" Value="True"/>
-                            <Trigger Property="IsDefaulted" Value="True"/>
-                            <Trigger Property="IsMouseOver" Value="True"/>
-                            <Trigger Property="IsPressed" Value="True"/>
-                            <Trigger Property="IsEnabled" Value="False"/>
+                            <Trigger Property="IsKeyboardFocused" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="grid" Value="#FF222C70"/>
+                                <Setter Property="Foreground" TargetName="textBlock" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="grid" Value="#FF4452A8"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" TargetName="textBlock" Value="#FFC5CAE9"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

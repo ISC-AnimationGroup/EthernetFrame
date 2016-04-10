@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -23,9 +24,16 @@ namespace EthernetFrameApp
         public double LastWidth { get; set; }
         public double LastHeight { get; set; }
 
+        private List<ToggleButton> pageButtons = new List<ToggleButton>();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            pageButtons.Add(bt_anim1);
+            pageButtons.Add(bt_anim2);
+            pageButtons.Add(bt_anim3);
+            pageButtons.Add(bt_anim4);
         }
 
         private void bt_close_Click(object sender, RoutedEventArgs e)
@@ -104,19 +112,35 @@ namespace EthernetFrameApp
             frame.Navigate(new Pages.SettingsPage());
         }
 
-        private void bt_anim1_Click(object sender, RoutedEventArgs e)
+        private void bt_anim_Checked(object sender, RoutedEventArgs e)
         {
-            frame.Navigate(new Pages.AnimationPage(1));
+            for (int i = 0; i < pageButtons.Count; i++)
+            {
+                if (pageButtons[i] != (sender as ToggleButton))
+                {
+                    pageButtons[i].IsChecked = false;
+                }
+                else
+                {
+                    frame.Navigate(new Pages.AnimationPage(i + 1));
+                    frame.Focus();
+                }
+            }
         }
 
-        private void bt_anim2_Click(object sender, RoutedEventArgs e)
-        {
-            frame.Navigate(new Pages.AnimationPage(2));
-        }
+        //private void bt_anim1_Click(object sender, RoutedEventArgs e)
+        //{
+        //    frame.Navigate(new Pages.AnimationPage(1));
+        //}
 
-        private void bt_anim3_Click(object sender, RoutedEventArgs e)
-        {
-            frame.Navigate(new Pages.AnimationPage(3));
-        }
+        //private void bt_anim2_Click(object sender, RoutedEventArgs e)
+        //{
+        //    frame.Navigate(new Pages.AnimationPage(2));
+        //}
+
+        //private void bt_anim3_Click(object sender, RoutedEventArgs e)
+        //{
+        //    frame.Navigate(new Pages.AnimationPage(3));
+        //}
     }
 }

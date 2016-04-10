@@ -19,11 +19,19 @@ using System.Xml;
 namespace EthernetFrameApp.Pages
 {
     /// <summary>
-    /// Interaktionslogik für Case1Page.xaml
+    /// Interaktionslogik für AnimationPage.xaml
     /// </summary>
     public partial class AnimationPage : Page
     {
+        private static List<string> AnimationPaths = new List<string>()
+        {
+            "videoplayback1.mp4",
+            "2.mp4",
+            "3.mp4",
+            "4.mp4"
+        };
         private ObservableCollection<AnimInfoListBoxItem> animInfoList = new ObservableCollection<AnimInfoListBoxItem>();
+        private bool animationIsPlaying = false;
 
         public ObservableCollection<AnimInfoListBoxItem> AnimInfoList
         {
@@ -40,18 +48,16 @@ namespace EthernetFrameApp.Pages
             }
         }
 
-
-        private static List<string> AnimationPaths = new List<string>()
-        {
-            "1.mp4",
-            "2.mp4",
-            "3.mp4"
-        };
-
+        /// <summary>
+        /// WPF-Page which contains Mediaplayer for animation playback.
+        /// </summary>
+        /// <param name="animationCase">Defines ID of Animation (beginning with 1)</param>
         public AnimationPage(int animationCase)
         {
             InitializeComponent();
             this.DataContext = this;
+
+            animationIsPlaying = false;
 
             try
             {
@@ -74,43 +80,49 @@ namespace EthernetFrameApp.Pages
             }
             catch (Exception)
             {
-                // xml not found / not access
+                // xml not found / no access
             }
 
-            // TODO: fix
-            mediaElement.BeginInit();
-            mediaElement.Source = new Uri(string.Format("Animations/videoplayback{0}.mp4", animationCase), UriKind.Relative);
-            mediaElement.EndInit();
-
-            if (AnimInfoList.Count > 0)
+            try
             {
+                mediaElement.BeginInit();
+                mediaElement.Source = new Uri(string.Format("Animations\\{0}", AnimationPaths[animationCase - 1]), UriKind.Relative);
+                mediaElement.EndInit();
 
+                if (AnimInfoList.Count > 0)
+                {
+                    // Initialize and run Timers to show Info about Animation
+                }
+                mediaElement.Play();
+                animationIsPlaying = true;
             }
-            mediaElement.Play();
-            animationIsPlaying = true;
+            catch (Exception)
+            {
+                // Animation file not found / no access
+            }
         }
 
         private void lv_animInfos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (var item in AnimInfoList)
             {
-                item.ContentVisible = Visibility.Collapsed;
+                item.Close();
             }
 
             ListView lv = (sender as ListView);
             AnimInfoListBoxItem selectedItem = (lv.SelectedItem as AnimInfoListBoxItem);
             if (selectedItem.ContentVisible == Visibility.Collapsed)
             {
-                selectedItem.ContentVisible = Visibility.Visible;
+                selectedItem.Open();
+                mediaElement.Position = selectedItem.OpenTrigger;
             }
             else
             {
-                selectedItem.ContentVisible = Visibility.Collapsed;
+                // Hint: Is actually never been called since SelectionChanged won't fire by another Click.
+                selectedItem.Close();
             }
             
         }
-
-        private bool animationIsPlaying = false;
 
         public void Page_KeyDown(object sender, KeyEventArgs e)
         {

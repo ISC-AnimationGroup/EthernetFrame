@@ -4,40 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EthernetFrameApp"
+        xmlns:extensions="clr-namespace:EthernetFrameApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="89"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid>
+            <Grid Background="#FF303F9F">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button x:Name="bt_anim1" Content="Ethernet Frame" Style="{DynamicResource ButtonStyle1}" Foreground="{x:Null}" Click="bt_anim1_Click"/>
-                <Button x:Name="bt_anim2" Content="Tagged Uplink" Style="{DynamicResource ButtonStyle1}" Grid.Row="1" Foreground="{x:Null}" Click="bt_anim2_Click"/>
-                <Button x:Name="bt_anim3" Content="Portbased Tagging" Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Foreground="{x:Null}" Click="bt_anim3_Click"/>
+                <ToggleButton x:Name="bt_anim1" Content="Ethernet Frame" Style="{DynamicResource ToggleButtonStyle_Side}" Checked="bt_anim_Checked"/>
+                <ToggleButton x:Name="bt_anim2" Grid.Row="1" Content="Tagged Uplink" Style="{DynamicResource ToggleButtonStyle_Side}" Checked="bt_anim_Checked"/>
+                <ToggleButton x:Name="bt_anim3" Grid.Row="2" Content="Portbased Tagging" Style="{DynamicResource ToggleButtonStyle_Side}" Checked="bt_anim_Checked"/>
+                <ToggleButton x:Name="bt_anim4" Grid.Row="3" Content="Lorem Ipsum" Style="{DynamicResource ToggleButtonStyle_Side}" Checked="bt_anim_Checked"/>
             </Grid>
-            <Frame x:Name="frame" Content="PageFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="frame" Content="PageFrame" Grid.Column="1" NavigationUIVisibility="Hidden" IsTabStop="False"/>
         </Grid>
-        <Grid Grid.Row="1" Background="White">
+        <Grid Grid.Row="1" Background="#FF303F9F">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="bt_close" Content="Beenden" Style="{DynamicResource ButtonStyle1}" Click="bt_close_Click" Foreground="{x:Null}"/>
-            <Button x:Name="bt_settings" Style="{DynamicResource ButtonStyle1}" Click="bt_settings_Click" Grid.Column="2" FontFamily="Segoe UI Symbol">
+            <Button x:Name="bt_close" Content="Beenden" Tag="Icons/Door-Opened-48_c.png" Style="{DynamicResource ButtonStyle_Bottom}" Click="bt_close_Click" Foreground="{x:Null}"/>
+            <Button x:Name="bt_settings" Style="{DynamicResource ButtonStyle_Bottom}" Click="bt_settings_Click" Grid.Column="2" FontFamily="Segoe UI Symbol">
                 <Button.Foreground>
-                    <ImageBrush ImageSource="Icons/IC809455.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="Icons/Settings-50_win10.png" Stretch="Uniform"/>
                 </Button.Foreground>
             </Button>
 
