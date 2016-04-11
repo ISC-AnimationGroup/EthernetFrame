@@ -6,6 +6,8 @@ using System.Windows.Input;
 using EthernetFrameApp.Classes;
 using System.Collections.ObjectModel;
 using System.Xml;
+using System.Timers;
+using System.Reflection;
 
 namespace EthernetFrameApp.Pages
 {
@@ -21,6 +23,8 @@ namespace EthernetFrameApp.Pages
             "3.mp4",
             "4.mp4"
         };
+        private Timer OpenNextInfoTimer = new Timer();
+        private int CurrentInfoItem;
         private ObservableCollection<AnimInfoListBoxItem> animInfoList = new ObservableCollection<AnimInfoListBoxItem>();
         private bool animationIsPlaying = false;
 
@@ -39,6 +43,22 @@ namespace EthernetFrameApp.Pages
             }
         }
 
+        private void OpenNextInfoTimerHandler(object sender, ElapsedEventArgs e)
+        {
+            OpenNextInfoTimer.Stop();
+            CurrentInfoItem++;
+            foreach (var item in AnimInfoList)
+            {
+                item.Close();
+            }
+            AnimInfoList[CurrentInfoItem].Open();
+            if (CurrentInfoItem < AnimInfoList.Count)
+            {
+                OpenNextInfoTimer.Interval = AnimInfoList[CurrentInfoItem + 1].OpenTrigger.TotalMilliseconds - AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds;
+                OpenNextInfoTimer.Start();
+            }
+        }
+
         /// <summary>
         /// WPF-Page which contains Mediaplayer for animation playback.
         /// </summary>
@@ -49,6 +69,7 @@ namespace EthernetFrameApp.Pages
             this.DataContext = this;
 
             animationIsPlaying = false;
+            OpenNextInfoTimer.Elapsed += new ElapsedEventHandler(OpenNextInfoTimerHandler);
 
             try
             {
@@ -83,6 +104,9 @@ namespace EthernetFrameApp.Pages
                 if (AnimInfoList.Count > 0)
                 {
                     // Initialize and run Timers to show Info about Animation
+                    CurrentInfoItem = 0;
+                    OpenNextInfoTimer.Interval = animInfoList[1].OpenTrigger.TotalMilliseconds;
+                    OpenNextInfoTimer.Start();
                 }
                 mediaElement.Play();
                 animationIsPlaying = true;
@@ -95,6 +119,8 @@ namespace EthernetFrameApp.Pages
 
         private void lv_animInfos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            OpenNextInfoTimer.Stop();
+
             foreach (var item in AnimInfoList)
             {
                 item.Close();
@@ -105,7 +131,15 @@ namespace EthernetFrameApp.Pages
             if (selectedItem.ContentVisible == Visibility.Collapsed)
             {
                 selectedItem.Open();
+                mediaElement.Pause();
                 mediaElement.Position = selectedItem.OpenTrigger;
+                mediaElement.Play();
+                CurrentInfoItem = AnimInfoList.IndexOf(selectedItem);
+                if (CurrentInfoItem < AnimInfoList.Count)
+                {
+                    OpenNextInfoTimer.Interval = AnimInfoList[CurrentInfoItem + 1].OpenTrigger.TotalMilliseconds - AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds;
+                    OpenNextInfoTimer.Start();
+                }
             }
             else
             {
@@ -114,6 +148,15 @@ namespace EthernetFrameApp.Pages
             }
             
         }
+
+        //private MediaState GetMediaState(MediaElement myMedia)
+        //{
+        //    FieldInfo hlp = typeof(MediaElement).GetField("_helper", BindingFlags.NonPublic | BindingFlags.Instance);
+        //    object helperObject = hlp.GetValue(myMedia);
+        //    FieldInfo stateField = helperObject.GetType().GetField("_currentState", BindingFlags.NonPublic | BindingFlags.Instance);
+        //    MediaState state = (MediaState)stateField.GetValue(helperObject);
+        //    return state;
+        //}
 
         public void Page_KeyDown(object sender, KeyEventArgs e)
         {
