@@ -14,7 +14,17 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="tb_title" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Einstellungen" VerticalAlignment="Top" FontSize="32"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="This is a test" VerticalAlignment="Top" Grid.Row="1"/>
-
+        <StackPanel Grid.Row="1" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="checkBox" Content="Zeige Informationen zur Animation" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Grid>
+            <Separator Opacity="0" Height="10"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="This is a test" VerticalAlignment="Top"/>
+        </StackPanel>
+        
     </Grid>
 </Page>

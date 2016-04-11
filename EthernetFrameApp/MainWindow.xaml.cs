@@ -98,22 +98,28 @@ namespace EthernetFrameApp
 
         private void bt_settings_Click(object sender, RoutedEventArgs e)
         {
+            UncheckPageNavi();
             frame.Navigate(new Pages.SettingsPage());
         }
 
-        private void bt_anim_Checked(object sender, RoutedEventArgs e)
+        private void bt_anim_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < pageButtons.Count; i++)
+            UncheckPageNavi();
+
+            int buttonIndex = pageButtons.IndexOf((sender as ToggleButton));
+            if (buttonIndex > -1)
             {
-                if (pageButtons[i] != (sender as ToggleButton))
-                {
-                    pageButtons[i].IsChecked = false;
-                }
-                else
-                {
-                    frame.Navigate(new Pages.AnimationPage(i + 1));
-                    frame.Focus();
-                }
+                pageButtons[buttonIndex].IsChecked = true;
+                frame.Navigate(new Pages.AnimationPage(buttonIndex + 1));
+                frame.Focus();
+            }
+        }
+
+        private void UncheckPageNavi()
+        {
+            foreach (ToggleButton tglBt in pageButtons)
+            {
+                tglBt.IsChecked = false;
             }
         }
 

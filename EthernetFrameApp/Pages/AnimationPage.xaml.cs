@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Xml;
 using System.Timers;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace EthernetFrameApp.Pages
 {
@@ -19,8 +20,8 @@ namespace EthernetFrameApp.Pages
         private static List<string> AnimationPaths = new List<string>()
         {
             "videoplayback1.mp4",
-            "2.mp4",
-            "3.mp4",
+            "drop1.avi",
+            "Wildlife.wmv",
             "4.mp4"
         };
         private Timer OpenNextInfoTimer = new Timer();
@@ -90,31 +91,49 @@ namespace EthernetFrameApp.Pages
                     AnimInfoList.Add(infoItem);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 // xml not found / no access
+                MessageBox.Show(e.Message);
             }
 
             try
             {
-                mediaElement.BeginInit();
-                mediaElement.Source = new Uri(string.Format("Animations\\{0}", AnimationPaths[animationCase - 1]), UriKind.Relative);
-                mediaElement.EndInit();
+                mediaElement.MediaOpened += new RoutedEventHandler(MediaLoadedHandler);
+                mediaElement.MediaFailed += MediaFailedHandler;
 
-                if (AnimInfoList.Count > 0)
-                {
-                    // Initialize and run Timers to show Info about Animation
-                    CurrentInfoItem = 0;
-                    OpenNextInfoTimer.Interval = animInfoList[1].OpenTrigger.TotalMilliseconds;
-                    OpenNextInfoTimer.Start();
-                }
+                Debug.WriteLine(string.Format("MediaElement.BeginInit Timestamp: {0}.{1}", DateTime.Now, DateTime.Now.Millisecond));
+                mediaElement.BeginInit();
+                // mediaElement.Source = new Uri("C:\\Users\\schneima4\\Documents\\Visual Studio 2015\\Projects\\EthernetFrameApp\\EthernetFrameApp\\Animations\\videoplayback1.mp4", UriKind.Absolute);
+                Uri mediaSource = new Uri(string.Format("Animations\\{0}", AnimationPaths[animationCase - 1]), UriKind.Relative);
+                mediaElement.Source = mediaSource;
+                mediaElement.EndInit();
                 mediaElement.Play();
                 animationIsPlaying = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 // Animation file not found / no access
+                MessageBox.Show(e.Message);
             }
+        }
+
+        private void MediaLoadedHandler(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine(string.Format("MediaElement.MediaLoaded Timestamp: {0}.{1}", DateTime.Now, DateTime.Now.Millisecond));
+            if (AnimInfoList.Count > 0)
+            {
+                // Initialize and run Timers to show Info about Animation
+                AnimInfoList[0].Open();
+                CurrentInfoItem = 0;
+                OpenNextInfoTimer.Interval = AnimInfoList[1].OpenTrigger.TotalMilliseconds;
+                OpenNextInfoTimer.Start();
+            }
+        }
+
+        private void MediaFailedHandler(object sender, ExceptionRoutedEventArgs e)
+        {
+            MessageBox.Show("Die Animation kann nicht wiedergegeben werden, da der benötigte Video-Codec fehlt (MP4)." + Environment.NewLine + e.ErrorException.Message);
         }
 
         private void lv_animInfos_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -135,7 +154,7 @@ namespace EthernetFrameApp.Pages
                 mediaElement.Position = selectedItem.OpenTrigger;
                 mediaElement.Play();
                 CurrentInfoItem = AnimInfoList.IndexOf(selectedItem);
-                if (CurrentInfoItem < AnimInfoList.Count)
+                if (CurrentInfoItem < AnimInfoList.Count -1)
                 {
                     OpenNextInfoTimer.Interval = AnimInfoList[CurrentInfoItem + 1].OpenTrigger.TotalMilliseconds - AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds;
                     OpenNextInfoTimer.Start();
