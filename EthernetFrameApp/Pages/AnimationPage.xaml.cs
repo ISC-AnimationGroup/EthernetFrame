@@ -20,9 +20,9 @@ namespace EthernetFrameApp.Pages
         private static List<string> AnimationPaths = new List<string>()
         {
             "videoplayback1.mp4",
-            "drop1.avi",
+            "videoplayback1.wmv",
             "Wildlife.wmv",
-            "4.mp4"
+            "videoplayback3.wmv"
         };
         private Timer OpenNextInfoTimer = new Timer();
         private int CurrentInfoItem;
@@ -46,6 +46,8 @@ namespace EthernetFrameApp.Pages
 
         private void OpenNextInfoTimerHandler(object sender, ElapsedEventArgs e)
         {
+            // TODO: fix here
+            Debug.WriteLine(string.Format("mediaElement.Position = {0}ms # OpenTrigger = {1}ms", mediaElement.Position.TotalMilliseconds, AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds));
             OpenNextInfoTimer.Stop();
             CurrentInfoItem++;
             foreach (var item in AnimInfoList)
@@ -189,22 +191,23 @@ namespace EthernetFrameApp.Pages
                     {
                         if (mediaElement.CanPause)
                         {
+                            OpenNextInfoTimer.Stop();
                             mediaElement.Pause();
                             animationIsPlaying = false;
                         }
                     }
                     else
                     {
+                        OpenNextInfoTimer.Interval = (AnimInfoList[CurrentInfoItem + 1].OpenTrigger - mediaElement.Position).TotalMilliseconds;
+                        OpenNextInfoTimer.Start();
                         mediaElement.Play();
                         animationIsPlaying = true;
                     }
                     break;
                 case Key.Left:
-                    break;
                 case Key.Up:
                     break;
                 case Key.Right:
-                    break;
                 case Key.Down:
                     break;
                 case Key.F11:
