@@ -151,17 +151,17 @@
     <Resource Include="Icons\Right-64.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Animations\Animation1.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\Animation2.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Strings\de\Animation4.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Icons\About-64.png" />
     <Resource Include="Icons\Info-64.png" />
-    <Content Include="Animations\videoplayback1.wmv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Animations\videoplayback3.wmv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Strings\de\Animation2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -182,14 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Animations\drop1.avi">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Animations\videoplayback1.mp4">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -215,26 +207,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="Animations\drop1.avi">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Animations\videoplayback1.mp4">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
     <PublishFile Include="Strings\de\Animation1.xml">
       <Visible>False</Visible>
       <Group>
