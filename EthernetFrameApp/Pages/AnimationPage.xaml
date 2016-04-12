@@ -13,7 +13,7 @@
             <RowDefinition Height="113"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="tb_title" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="Ethernet-Frame im Netzwerk" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="46" Foreground="#FF303F9F"/>
+        <TextBlock HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="{Binding PageTitle}" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="46" Foreground="#FF303F9F"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

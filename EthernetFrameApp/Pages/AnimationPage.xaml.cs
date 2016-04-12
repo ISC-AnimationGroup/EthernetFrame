@@ -17,12 +17,13 @@ namespace EthernetFrameApp.Pages
     /// </summary>
     public partial class AnimationPage : Page
     {
-        private static List<string> AnimationPaths = new List<string>()
+        private static List<List<string>> Animations = new List<List<string>>()
         {
-            "videoplayback1.mp4",
-            "videoplayback1.wmv",
-            "Wildlife.wmv",
-            "videoplayback3.wmv"
+            // { Path, PageTitle }
+            new List<string> { "Animation1.wmv", "Lorem Ipsum 1" },
+            new List<string> { "Animation2.wmv", "Lorem Ipsum 2" },
+            new List<string> { "Animation1.mp4", "Lorem Ipsum 3" },
+            new List<string> { "Animation2.mp4", "Lorem Ipsum 4" }
         };
         private Timer OpenNextInfoTimer = new Timer();
         private int CurrentInfoItem;
@@ -43,24 +44,7 @@ namespace EthernetFrameApp.Pages
                 }
             }
         }
-
-        private void OpenNextInfoTimerHandler(object sender, ElapsedEventArgs e)
-        {
-            // TODO: fix here
-            //Debug.WriteLine(string.Format("mediaElement.Position = {0}ms # OpenTrigger = {1}ms", mediaElement.Position.TotalMilliseconds, AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds));
-            OpenNextInfoTimer.Stop();
-            CurrentInfoItem++;
-            foreach (var item in AnimInfoList)
-            {
-                item.Close();
-            }
-            AnimInfoList[CurrentInfoItem].Open();
-            if (CurrentInfoItem < AnimInfoList.Count)
-            {
-                OpenNextInfoTimer.Interval = AnimInfoList[CurrentInfoItem + 1].OpenTrigger.TotalMilliseconds - AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds;
-                OpenNextInfoTimer.Start();
-            }
-        }
+        public string PageTitle { get; set; }
 
         /// <summary>
         /// WPF-Page which contains Mediaplayer for animation playback.
@@ -69,6 +53,7 @@ namespace EthernetFrameApp.Pages
         public AnimationPage(int animationCase)
         {
             InitializeComponent();
+            PageTitle = Animations[animationCase - 1][1];
             this.DataContext = this;
 
             animationIsPlaying = false;
@@ -107,7 +92,7 @@ namespace EthernetFrameApp.Pages
                 Debug.WriteLine(string.Format("MediaElement.BeginInit Timestamp: {0}.{1}", DateTime.Now, DateTime.Now.Millisecond));
                 mediaElement.BeginInit();
                 // mediaElement.Source = new Uri("C:\\Users\\schneima4\\Documents\\Visual Studio 2015\\Projects\\EthernetFrameApp\\EthernetFrameApp\\Animations\\videoplayback1.mp4", UriKind.Absolute);
-                Uri mediaSource = new Uri(string.Format("Animations\\{0}", AnimationPaths[animationCase - 1]), UriKind.Relative);
+                Uri mediaSource = new Uri(string.Format("Animations\\{0}", Animations[animationCase - 1][0]), UriKind.Relative);
                 mediaElement.Source = mediaSource;
                 mediaElement.EndInit();
                 mediaElement.Play();
@@ -136,6 +121,25 @@ namespace EthernetFrameApp.Pages
         private void MediaFailedHandler(object sender, ExceptionRoutedEventArgs e)
         {
             MessageBox.Show("Die Animation kann nicht wiedergegeben werden, da der benötigte Video-Codec fehlt (MP4)." + Environment.NewLine + e.ErrorException.Message);
+        }
+
+        private void OpenNextInfoTimerHandler(object sender, ElapsedEventArgs e)
+        {
+            // TODO: fix here
+            //Debug.WriteLine(string.Format("mediaElement.Position = {0}ms # OpenTrigger = {1}ms", mediaElement.Position.TotalMilliseconds, AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds));
+
+            OpenNextInfoTimer.Stop();
+            CurrentInfoItem++;
+            foreach (var item in AnimInfoList)
+            {
+                item.Close();
+            }
+            AnimInfoList[CurrentInfoItem].Open();
+            if (CurrentInfoItem < AnimInfoList.Count)
+            {
+                OpenNextInfoTimer.Interval = AnimInfoList[CurrentInfoItem + 1].OpenTrigger.TotalMilliseconds - AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds;
+                OpenNextInfoTimer.Start();
+            }
         }
 
         private void lv_animInfos_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -5,10 +5,42 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EthernetFrameApp.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="InfoPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="113"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,25.908" TextWrapping="Wrap" Text="Info" VerticalAlignment="Center" FontSize="46" FontFamily="Segoe UI Light" Grid.Column="1"/>
+        <Grid Grid.Column="1" Margin="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="30" Stroke="Black" VerticalAlignment="Center" Width="30" RadiusX="6" RadiusY="6"/>
+            <TextBlock x:Name="textBlock5" HorizontalAlignment="Center" TextWrapping="Wrap" Text="F11" VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBlock x:Name="textBlock6" Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vollbildmodus de-/aktivieren" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="30" Stroke="Black" VerticalAlignment="Center" Width="30" RadiusX="6" RadiusY="6" Margin="0" Grid.Row="1"/>
+            <TextBlock x:Name="textBlock5_Copy" HorizontalAlignment="Center" TextWrapping="Wrap" Text="ESC" VerticalAlignment="Center" Margin="0" Grid.Row="1" FontWeight="Bold"/>
+            <TextBlock x:Name="textBlock7" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,3,0" Grid.Row="1" TextWrapping="Wrap" Text="Vollbildmodus deaktivieren / Programm beenden" VerticalAlignment="Center"/>
+        </Grid>
+        <TextBlock x:Name="textBlock1" Grid.Column="1" HorizontalAlignment="Left" Margin="0" Grid.Row="2" TextWrapping="Wrap" Text="About" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="32"/>
+        <TextBlock x:Name="textBlock2" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap" Text="Konzept, Design und Entwicklung dieser Software und  Animationen:&#x0a;Martin Schneider&#x0a;Sandro Moschkau&#x0a;Florian Loos" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock3" Grid.Column="1" HorizontalAlignment="Left" Margin="0,68.84,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Button-Icons:&#x0a;www.Icons8.com" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock4" Grid.Column="1" HorizontalAlignment="Left" Margin="0,136,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Projektarbeit ITF14A&#x0a;© 2016" VerticalAlignment="Top"/>
     </Grid>
 </Page>

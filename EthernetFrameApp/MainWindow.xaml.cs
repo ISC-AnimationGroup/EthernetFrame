@@ -102,6 +102,12 @@ namespace EthernetFrameApp
             frame.Navigate(new Pages.SettingsPage());
         }
 
+        private void bt_info_Click(object sender, RoutedEventArgs e)
+        {
+            UncheckPageNavi();
+            frame.Navigate(new Pages.InfoPage());
+        }
+
         private void bt_anim_Click(object sender, RoutedEventArgs e)
         {
             UncheckPageNavi();

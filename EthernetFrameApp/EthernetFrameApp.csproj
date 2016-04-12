@@ -151,7 +151,13 @@
     <Resource Include="Icons\Right-64.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Animations\Animation1.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Animations\Animation1.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\Animation2.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Animations\Animation2.wmv">
