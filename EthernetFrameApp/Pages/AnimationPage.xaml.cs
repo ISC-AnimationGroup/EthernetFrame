@@ -47,7 +47,7 @@ namespace EthernetFrameApp.Pages
         private void OpenNextInfoTimerHandler(object sender, ElapsedEventArgs e)
         {
             // TODO: fix here
-            Debug.WriteLine(string.Format("mediaElement.Position = {0}ms # OpenTrigger = {1}ms", mediaElement.Position.TotalMilliseconds, AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds));
+            //Debug.WriteLine(string.Format("mediaElement.Position = {0}ms # OpenTrigger = {1}ms", mediaElement.Position.TotalMilliseconds, AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds));
             OpenNextInfoTimer.Stop();
             CurrentInfoItem++;
             foreach (var item in AnimInfoList)
@@ -156,7 +156,7 @@ namespace EthernetFrameApp.Pages
                 mediaElement.Position = selectedItem.OpenTrigger;
                 mediaElement.Play();
                 CurrentInfoItem = AnimInfoList.IndexOf(selectedItem);
-                if (CurrentInfoItem < AnimInfoList.Count -1)
+                if (CurrentInfoItem < AnimInfoList.Count - 1)
                 {
                     OpenNextInfoTimer.Interval = AnimInfoList[CurrentInfoItem + 1].OpenTrigger.TotalMilliseconds - AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds;
                     OpenNextInfoTimer.Start();
