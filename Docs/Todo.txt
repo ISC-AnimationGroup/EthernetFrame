@@ -1,9 +1,0 @@
-Zu Verweisen hinzufügen:
-AxInterop.WMPLib.dll
-Interop.WMPLib.dll
-( http://stackoverflow.com/questions/18443493/how-to-add-reference-to-windows-media-player-to-my-visual-studio-project )
-
-
-
-AnimationInfos:
-Header über Video einblenden
