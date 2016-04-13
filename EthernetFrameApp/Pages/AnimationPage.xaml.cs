@@ -137,10 +137,14 @@ namespace EthernetFrameApp.Pages
 
         private void MediaLoadedHandler(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(string.Format("MediaElement.MediaLoaded Timestamp: {0}.{1}", DateTime.Now, DateTime.Now.Millisecond));
-
+            Debug.WriteLine(string.Format("MediaElement.MediaLoaded Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
             // Pause it in any case
-            PlayPause();
+            if (animationIsPlaying)
+            {
+                PlayPause();
+                SetToCurrentFrame();
+            }
+            Debug.WriteLine(string.Format("MediaLoaded->PlayPause() Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
 
             if (Config.PauseDelay > 0)
             {
@@ -165,6 +169,7 @@ namespace EthernetFrameApp.Pages
         {
             stepPauseTimer.Stop();
             PlayPause();
+            Debug.WriteLine(string.Format("stepPauseTimerHandler->PlayPause() Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
         }
 
         private void lv_animInfos_SelectionChanged(object sender, SelectionChangedEventArgs e)

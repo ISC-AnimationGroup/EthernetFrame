@@ -134,7 +134,7 @@ namespace EthernetFrameApp
             StopStep = (Properties.Settings.Default["StopStep"] as Nullable<bool>) == false ? false : true;
             if (!StopStep)
             {
-                PauseDelay = (Properties.Settings.Default["PauseDelay"] as Nullable<int>) ?? 10;
+                PauseDelay = (Properties.Settings.Default["PauseDelay"] as Nullable<int>) ?? 5;
             }
         }
 
