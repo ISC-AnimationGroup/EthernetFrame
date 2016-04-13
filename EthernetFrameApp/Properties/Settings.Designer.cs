@@ -22,5 +22,41 @@ namespace EthernetFrameApp.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SideVisible {
+            get {
+                return ((bool)(this["SideVisible"]));
+            }
+            set {
+                this["SideVisible"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool StopStep {
+            get {
+                return ((bool)(this["StopStep"]));
+            }
+            set {
+                this["StopStep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int PauseDelay {
+            get {
+                return ((int)(this["PauseDelay"]));
+            }
+            set {
+                this["PauseDelay"] = value;
+            }
+        }
     }
 }

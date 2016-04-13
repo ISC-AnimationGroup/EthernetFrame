@@ -19,15 +19,16 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="tb_title" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="Einstellungen" VerticalAlignment="Center" FontSize="46" FontFamily="Segoe UI Light" Grid.Column="1"/>
         <StackPanel Grid.Row="1" Margin="0,10,0,0" Grid.Column="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <CheckBox x:Name="checkBox" Content="Zeige Informationen zur Animation" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            </Grid>
+            <CheckBox x:Name="cb_SideVisible" Content="Zeige Informationen zur Animation" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.SideVisible}"/>
             <Separator Opacity="0" Height="10"/>
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="This is a test" VerticalAlignment="Top"/>
+            <CheckBox x:Name="cb_StopStep" Content="Pausiere die Animation zu Beginn eines Teilschrittes" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.StopStep}" Click="cb_StopStep_Click"/>
+            <Separator Opacity="0" Height="10"/>
+            <Grid IsEnabled="False" x:Name="g_pauseDelay">
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pausiere die Animation zu Beginn eines Teilschrittes für X Sekunden:" VerticalAlignment="Top"/>
+                <TextBox x:Name="tb_pauseDelay" TextWrapping="Wrap" Text="{Binding Source={StaticResource Settings}, Path=Default.PauseDelay}" HorizontalAlignment="Left" Width="50" Margin="0,20.96,0,0" Height="23"/>
+            </Grid>
+            <Separator Opacity="0" Height="20"/>
+            <Button x:Name="bt_apply" Content="Übernehmen" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100" Click="bt_apply_Click"/>
         </StackPanel>
 
     </Grid>

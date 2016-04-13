@@ -25,9 +25,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <ToggleButton x:Name="bt_anim1" Content="Ethernet Frame" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
-                <ToggleButton x:Name="bt_anim2" Grid.Row="1" Content="Tagged Uplink" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
-                <ToggleButton x:Name="bt_anim3" Grid.Row="2" Content="Portbased Tagging" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
-                <ToggleButton x:Name="bt_anim4" Grid.Row="3" Content="Lorem Ipsum" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
+                <ToggleButton x:Name="bt_anim2" Grid.Row="1" Content="MAC Learning" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
+                <ToggleButton x:Name="bt_anim3" Grid.Row="2" Content="Portbased VLAN" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
+                <ToggleButton x:Name="bt_anim4" Grid.Row="3" Content="Tagged VLAN" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
             </Grid>
             <Frame x:Name="frame" Content="PageFrame" Grid.Column="1" NavigationUIVisibility="Hidden" IsTabStop="False"/>
         </Grid>
@@ -39,8 +39,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="bt_info" Content="Info" Tag="Icons/Info-64.png" Style="{DynamicResource ButtonStyle_Bottom}" Foreground="{x:Null}" Grid.Column="1" Click="bt_info_Click"/>
-            <Button x:Name="bt_settings" Content="Settings" Tag="Icons/Settings-50_win10.png" Style="{DynamicResource ButtonStyle_Bottom}" Click="bt_settings_Click" Foreground="{x:Null}" Grid.Column="2"/>
-            <Button x:Name="bt_close" Content="Exit" Tag="Icons/Door-Opened-48_c.png" Style="{DynamicResource ButtonStyle_Bottom}" Click="bt_close_Click" Foreground="{x:Null}" Grid.Column="3"/>
+            <Button x:Name="bt_settings" Content="Einstellungen" Tag="Icons/Settings-50_win10.png" Style="{DynamicResource ButtonStyle_Bottom}" Click="bt_settings_Click" Foreground="{x:Null}" Grid.Column="2"/>
+            <Button x:Name="bt_close" Content="Beenden" Tag="Icons/Door-Opened-48_c.png" Style="{DynamicResource ButtonStyle_Bottom}" Click="bt_close_Click" Foreground="{x:Null}" Grid.Column="3"/>
         </Grid>
     </Grid>
 </Window>

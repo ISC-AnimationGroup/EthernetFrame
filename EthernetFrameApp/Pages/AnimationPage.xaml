@@ -6,22 +6,22 @@
       xmlns:local="clr-namespace:EthernetFrameApp.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="AnimationPage" KeyDown="Page_KeyDown">
+      Title="AnimationPage" KeyDown="Page_KeyDown" Unloaded="Page_Unloaded">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="113"/>
+            <RowDefinition Height="{Binding HeaderHeight}"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="{Binding PageTitle}" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="46" Foreground="#FF303F9F"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="{Binding SideWidth}"/>
             </Grid.ColumnDefinitions>
             <MediaElement x:Name="mediaElement" Grid.Row="1" LoadedBehavior="Manual" IsMuted="True" />
-            <Grid x:Name="g_animationInfo" Grid.Column="1" HorizontalAlignment="Right" Margin="0" Grid.Row="1" Width="200" Background="White">
-                <ListView x:Name="lv_animInfos" Background="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" SelectionChanged="lv_animInfos_SelectionChanged" ItemsSource="{Binding AnimInfoList}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <Grid x:Name="g_animationInfo" Grid.Column="1" HorizontalAlignment="Right" Margin="0" Grid.Row="1" Width="200" Background="White" Visibility="{Binding SideVisible}">
+                <ListView x:Name="lv_animInfos" Background="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" SelectionChanged="lv_animInfos_SelectionChanged" ItemsSource="{Binding AnimInfoList}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedIndex="{Binding CurrentInfoItem}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
