@@ -19,6 +19,8 @@ namespace EthernetFrameApp
         {
             InitializeComponent();
 
+            frame.Navigate(new Pages.StartPage());
+
             pageButtons.Add(bt_anim1);
             pageButtons.Add(bt_anim2);
             pageButtons.Add(bt_anim3);
@@ -128,20 +130,5 @@ namespace EthernetFrameApp
                 tglBt.IsChecked = false;
             }
         }
-
-        //private void bt_anim1_Click(object sender, RoutedEventArgs e)
-        //{
-        //    frame.Navigate(new Pages.AnimationPage(1));
-        //}
-
-        //private void bt_anim2_Click(object sender, RoutedEventArgs e)
-        //{
-        //    frame.Navigate(new Pages.AnimationPage(2));
-        //}
-
-        //private void bt_anim3_Click(object sender, RoutedEventArgs e)
-        //{
-        //    frame.Navigate(new Pages.AnimationPage(3));
-        //}
     }
 }

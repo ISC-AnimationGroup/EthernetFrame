@@ -9,14 +9,16 @@ using System.Xml;
 using System.Timers;
 using System.Reflection;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace EthernetFrameApp.Pages
 {
     /// <summary>
     /// Interaktionslogik für AnimationPage.xaml
     /// </summary>
-    public partial class AnimationPage : Page
+    public partial class AnimationPage : Page, INotifyPropertyChanged
     {
+        private static AppConfig Config;
         private static List<List<string>> Animations = new List<List<string>>()
         {
             // { Path, PageTitle }
@@ -25,11 +27,28 @@ namespace EthernetFrameApp.Pages
             new List<string> { "Animation1.mp4", "Lorem Ipsum 3" },
             new List<string> { "Animation2.mp4", "Lorem Ipsum 4" }
         };
-        private Timer OpenNextInfoTimer = new Timer();
-        private int CurrentInfoItem;
+        private Timer openNextInfoTimer = new Timer();
+        private Timer stepPauseTimer = new Timer();
+
+        private int currentInfoItem;
         private ObservableCollection<AnimInfoListBoxItem> animInfoList = new ObservableCollection<AnimInfoListBoxItem>();
         private bool animationIsPlaying = false;
 
+        public int CurrentInfoItem
+        {
+            get
+            {
+                return currentInfoItem;
+            }
+            set
+            {
+                if (currentInfoItem != value)
+                {
+                    currentInfoItem = value;
+                    NotifyPropertyChanged("CurrentInfoItem");
+                }
+            }
+        }
         public ObservableCollection<AnimInfoListBoxItem> AnimInfoList
         {
             get
@@ -45,6 +64,9 @@ namespace EthernetFrameApp.Pages
             }
         }
         public string PageTitle { get; set; }
+        public Visibility SideVisible { get; private set; }
+        public double HeaderHeight { get; private set; }
+        public double SideWidth { get; private set; }
 
         /// <summary>
         /// WPF-Page which contains Mediaplayer for animation playback.
@@ -52,12 +74,19 @@ namespace EthernetFrameApp.Pages
         /// <param name="animationCase">Defines ID of Animation (beginning with 1)</param>
         public AnimationPage(int animationCase)
         {
-            InitializeComponent();
+            Config = new AppConfig();
+            SideVisible = Config.SideVisible;
+            HeaderHeight = Config.HeaderHeight;
+            SideWidth = Config.SideWidth;
             PageTitle = Animations[animationCase - 1][1];
+            currentInfoItem = 0;
+
+            InitializeComponent();
             this.DataContext = this;
 
             animationIsPlaying = false;
-            OpenNextInfoTimer.Elapsed += new ElapsedEventHandler(OpenNextInfoTimerHandler);
+            openNextInfoTimer.Elapsed += new ElapsedEventHandler(OpenNextInfoTimerHandler);
+            stepPauseTimer.Elapsed += new ElapsedEventHandler(stepPauseTimerHandler);
 
             try
             {
@@ -77,6 +106,7 @@ namespace EthernetFrameApp.Pages
                     }
                     AnimInfoList.Add(infoItem);
                 }
+                AnimInfoList[CurrentInfoItem].Open();
             }
             catch (Exception e)
             {
@@ -95,8 +125,8 @@ namespace EthernetFrameApp.Pages
                 Uri mediaSource = new Uri(string.Format("Animations\\{0}", Animations[animationCase - 1][0]), UriKind.Relative);
                 mediaElement.Source = mediaSource;
                 mediaElement.EndInit();
-                mediaElement.Play();
                 animationIsPlaying = true;
+                mediaElement.Play();
             }
             catch (Exception e)
             {
@@ -107,14 +137,21 @@ namespace EthernetFrameApp.Pages
 
         private void MediaLoadedHandler(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(string.Format("MediaElement.MediaLoaded Timestamp: {0}.{1}", DateTime.Now, DateTime.Now.Millisecond));
-            if (AnimInfoList.Count > 0)
+            Debug.WriteLine(string.Format("MediaElement.MediaLoaded Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
+            // Pause it in any case
+            Debug.WriteLine(string.Format("Position: {0}", mediaElement.Position.TotalMilliseconds));
+            if (animationIsPlaying)
             {
-                // Initialize and run Timers to show Info about Animation
-                AnimInfoList[0].Open();
-                CurrentInfoItem = 0;
-                OpenNextInfoTimer.Interval = AnimInfoList[1].OpenTrigger.TotalMilliseconds;
-                OpenNextInfoTimer.Start();
+                PlayPause();
+            }
+            SetToCurrentFrame();
+            Debug.WriteLine(string.Format("MediaLoaded->PlayPause() Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
+
+            if (Config.PauseDelay > 0)
+            {
+                // Auto start after PauseDelay
+                stepPauseTimer.Interval = Config.PauseDelay * 1000;
+                stepPauseTimer.Start();
             }
         }
 
@@ -125,26 +162,21 @@ namespace EthernetFrameApp.Pages
 
         private void OpenNextInfoTimerHandler(object sender, ElapsedEventArgs e)
         {
-            // TODO: fix here
-            //Debug.WriteLine(string.Format("mediaElement.Position = {0}ms # OpenTrigger = {1}ms", mediaElement.Position.TotalMilliseconds, AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds));
+            openNextInfoTimer.Stop();
+            NextStep();
+        }
 
-            OpenNextInfoTimer.Stop();
-            CurrentInfoItem++;
-            foreach (var item in AnimInfoList)
-            {
-                item.Close();
-            }
-            AnimInfoList[CurrentInfoItem].Open();
-            if (CurrentInfoItem < AnimInfoList.Count)
-            {
-                OpenNextInfoTimer.Interval = AnimInfoList[CurrentInfoItem + 1].OpenTrigger.TotalMilliseconds - AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds;
-                OpenNextInfoTimer.Start();
-            }
+        private void stepPauseTimerHandler(object sender, ElapsedEventArgs e)
+        {
+            stepPauseTimer.Stop();
+            PlayPause();
+            Debug.WriteLine(string.Format("stepPauseTimerHandler->PlayPause() Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
         }
 
         private void lv_animInfos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            OpenNextInfoTimer.Stop();
+            openNextInfoTimer.Stop();
+            stepPauseTimer.Stop();
 
             foreach (var item in AnimInfoList)
             {
@@ -157,31 +189,98 @@ namespace EthernetFrameApp.Pages
             {
                 selectedItem.Open();
                 mediaElement.Pause();
-                mediaElement.Position = selectedItem.OpenTrigger;
-                mediaElement.Play();
                 CurrentInfoItem = AnimInfoList.IndexOf(selectedItem);
-                if (CurrentInfoItem < AnimInfoList.Count - 1)
+                SetToCurrentFrame();
+
+                if (Config.PauseDelay > 0)
                 {
-                    OpenNextInfoTimer.Interval = AnimInfoList[CurrentInfoItem + 1].OpenTrigger.TotalMilliseconds - AnimInfoList[CurrentInfoItem].OpenTrigger.TotalMilliseconds;
-                    OpenNextInfoTimer.Start();
+                    // Auto start after PauseDelay
+                    stepPauseTimer.Interval = Config.PauseDelay * 1000;
+                    stepPauseTimer.Start();
                 }
+            }
+        }
+        
+
+        private void SetToCurrentFrame()
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                mediaElement.Position = AnimInfoList[CurrentInfoItem].OpenTrigger;
+                animationIsPlaying = true;
+                mediaElement.Play();
+            }));
+            Timer timeout = new Timer(100);
+            timeout.Elapsed += new ElapsedEventHandler(LoadSomeFrameHandler);
+            timeout.Start();
+        }
+
+        private void LoadSomeFrameHandler(object sender, ElapsedEventArgs e)
+        {
+            (sender as Timer).Stop();
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                animationIsPlaying = false;
+                mediaElement.Pause();
+            }));
+        }
+
+        private void PlayPause()
+        {
+            stepPauseTimer.Stop();
+            openNextInfoTimer.Stop();
+
+            if (animationIsPlaying)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    if (mediaElement.CanPause)
+                    {
+                        animationIsPlaying = false;
+                        mediaElement.Pause();
+                    }
+                }));
             }
             else
             {
-                // Hint: Is actually never been called since SelectionChanged won't fire by another Click.
-                selectedItem.Close();
+                animationIsPlaying = true;
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    mediaElement.Play();
+                }));
+
+                if (CurrentInfoItem < AnimInfoList.Count - 1)
+                {
+                    this.Dispatcher.Invoke((Action)(() =>
+                    {
+                        openNextInfoTimer.Interval = (AnimInfoList[CurrentInfoItem + 1].OpenTrigger - mediaElement.Position).TotalMilliseconds;
+                    }));
+                    openNextInfoTimer.Start();
+                }
             }
-            
         }
 
-        //private MediaState GetMediaState(MediaElement myMedia)
-        //{
-        //    FieldInfo hlp = typeof(MediaElement).GetField("_helper", BindingFlags.NonPublic | BindingFlags.Instance);
-        //    object helperObject = hlp.GetValue(myMedia);
-        //    FieldInfo stateField = helperObject.GetType().GetField("_currentState", BindingFlags.NonPublic | BindingFlags.Instance);
-        //    MediaState state = (MediaState)stateField.GetValue(helperObject);
-        //    return state;
-        //}
+        private void NextStep()
+        {
+            PlayPause();
+
+            if (CurrentInfoItem < AnimInfoList.Count - 1)
+            {
+                CurrentInfoItem++;
+                SetToCurrentFrame();
+            }
+        }
+
+        private void PreviousStep()
+        {
+            PlayPause();
+
+            if (CurrentInfoItem > 0)
+            {
+                CurrentInfoItem--;
+                SetToCurrentFrame();
+            }
+        }
 
         public void Page_KeyDown(object sender, KeyEventArgs e)
         {
@@ -191,34 +290,17 @@ namespace EthernetFrameApp.Pages
                     break;
                 case Key.Space:
                 case Key.MediaPlayPause:
-                    if (animationIsPlaying)
-                    {
-                        if (mediaElement.CanPause)
-                        {
-                            OpenNextInfoTimer.Stop();
-                            mediaElement.Pause();
-                            animationIsPlaying = false;
-                        }
-                    }
-                    else
-                    {
-                        OpenNextInfoTimer.Interval = (AnimInfoList[CurrentInfoItem + 1].OpenTrigger - mediaElement.Position).TotalMilliseconds;
-                        OpenNextInfoTimer.Start();
-                        mediaElement.Play();
-                        animationIsPlaying = true;
-                    }
-                    break;
-                case Key.Left:
-                case Key.Up:
-                    break;
-                case Key.Right:
-                case Key.Down:
-                    break;
-                case Key.F11:
-                    break;
-                case Key.MediaNextTrack:
+                    PlayPause();
                     break;
                 case Key.MediaPreviousTrack:
+                case Key.PageUp:
+                //case Key.Up:
+                    PreviousStep();
+                    break;
+                case Key.MediaNextTrack:
+                case Key.PageDown:
+                //case Key.Down:
+                    NextStep();
                     break;
                 case Key.MediaStop:
                     break;
@@ -227,5 +309,20 @@ namespace EthernetFrameApp.Pages
             }
         }
 
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            openNextInfoTimer.Stop();
+            stepPauseTimer.Stop();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace EthernetFrameApp.Classes
 {
     public class AnimInfoListBoxItem : INotifyPropertyChanged
     {
+        private static AppConfig Config;
         private static BitmapImage IconDefault = new BitmapImage(new Uri("/EthernetFrameApp;component/Icons/Forward-48-grey_c.png", UriKind.Relative));
         private static BitmapImage IconActive = new BitmapImage(new Uri("/EthernetFrameApp;component/Icons/Forward-48_c.png", UriKind.Relative));
 
@@ -81,22 +82,23 @@ namespace EthernetFrameApp.Classes
 
         public AnimInfoListBoxItem()
         {
+            Config = new AppConfig();
             ContentVisible = Visibility.Collapsed;
             OpenTrigger = new TimeSpan(0,0,-1);
-            HeaderColor = AppConfig.AppColors.SecondaryText;
+            HeaderColor = Config.AppColors.SecondaryText;
             Icon = IconDefault;
         }
 
         public void Open()
         {
             ContentVisible = Visibility.Visible;
-            HeaderColor = AppConfig.AppColors.PrimaryText;
+            HeaderColor = Config.AppColors.PrimaryText;
             Icon = IconActive;
         }
         public void Close()
         {
             ContentVisible = Visibility.Collapsed;
-            HeaderColor = AppConfig.AppColors.SecondaryText;
+            HeaderColor = Config.AppColors.SecondaryText;
             Icon = IconDefault;
         }
 
