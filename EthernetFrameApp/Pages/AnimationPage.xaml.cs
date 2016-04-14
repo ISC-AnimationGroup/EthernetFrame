@@ -139,11 +139,12 @@ namespace EthernetFrameApp.Pages
         {
             Debug.WriteLine(string.Format("MediaElement.MediaLoaded Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
             // Pause it in any case
+            Debug.WriteLine(string.Format("Position: {0}", mediaElement.Position.TotalMilliseconds));
             if (animationIsPlaying)
             {
                 PlayPause();
-                SetToCurrentFrame();
             }
+            SetToCurrentFrame();
             Debug.WriteLine(string.Format("MediaLoaded->PlayPause() Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
 
             if (Config.PauseDelay > 0)

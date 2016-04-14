@@ -19,6 +19,8 @@ namespace EthernetFrameApp
         {
             InitializeComponent();
 
+            frame.Navigate(new Pages.StartPage());
+
             pageButtons.Add(bt_anim1);
             pageButtons.Add(bt_anim2);
             pageButtons.Add(bt_anim3);

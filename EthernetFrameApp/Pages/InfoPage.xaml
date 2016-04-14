@@ -19,7 +19,7 @@
             <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,25.908" TextWrapping="Wrap" Text="Info" VerticalAlignment="Center" FontSize="46" FontFamily="Segoe UI Light" Grid.Column="1"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Info" VerticalAlignment="Center" FontSize="46" FontFamily="Segoe UI Light" Grid.Column="1"/>
         <Grid Grid.Column="1" Margin="0" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>

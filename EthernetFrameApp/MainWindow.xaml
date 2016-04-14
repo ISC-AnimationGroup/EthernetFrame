@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EthernetFrameApp"
         xmlns:extensions="clr-namespace:EthernetFrameApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1220" KeyDown="Window_KeyDown" Icon="Icon.ico">
+        Title="Ethernet-Frame Animation" Height="720" Width="1220" KeyDown="Window_KeyDown" Icon="Icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -29,7 +29,7 @@
                 <ToggleButton x:Name="bt_anim3" Grid.Row="2" Content="Portbased VLAN" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
                 <ToggleButton x:Name="bt_anim4" Grid.Row="3" Content="Tagged VLAN" Style="{DynamicResource ToggleButtonStyle_Side}" Click="bt_anim_Click"/>
             </Grid>
-            <Frame x:Name="frame" Content="PageFrame" Grid.Column="1" NavigationUIVisibility="Hidden" IsTabStop="False"/>
+            <Frame x:Name="frame" Content="" Grid.Column="1" NavigationUIVisibility="Hidden" IsTabStop="False"/>
         </Grid>
         <Grid Grid.Row="1" Background="#FF303F9F">
             <Grid.ColumnDefinitions>
