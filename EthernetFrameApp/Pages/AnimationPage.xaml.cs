@@ -22,10 +22,10 @@ namespace EthernetFrameApp.Pages
         private static List<List<string>> Animations = new List<List<string>>()
         {
             // { Path, PageTitle }
-            new List<string> { "Animation1.wmv", "Lorem Ipsum 1" },
-            new List<string> { "Animation2.wmv", "Lorem Ipsum 2" },
-            new List<string> { "Animation1.mp4", "Lorem Ipsum 3" },
-            new List<string> { "Animation2.mp4", "Lorem Ipsum 4" }
+            new List<string> { "Animation1.mp4", "Ethernet Frame" },
+            new List<string> { "Animation2.mp4", "MAC Learning" },
+            new List<string> { "Animation3.mp4", "Portbased VLAN" },
+            new List<string> { "Animation4.mp4", "Tagged VLAN" }
         };
         private Timer openNextInfoTimer = new Timer();
         private Timer stepPauseTimer = new Timer();
