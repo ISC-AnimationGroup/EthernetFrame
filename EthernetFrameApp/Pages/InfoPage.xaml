@@ -21,7 +21,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Info" VerticalAlignment="Center" FontSize="46" FontFamily="Segoe UI Light" Grid.Column="1" Height="61.184" Margin="0,25.908" Width="73.513"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Info" VerticalAlignment="Center" FontSize="46" FontFamily="Segoe UI Light" Grid.Column="1"/>
         <TextBlock x:Name="textBlock8" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Tastenkürzel" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="32" Height="42.564" Margin="0,3.718" Width="166.837"/>
         <Grid Grid.Column="1" Margin="0" Grid.Row="2">
             <Grid.RowDefinitions>

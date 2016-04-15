@@ -118,6 +118,7 @@ namespace EthernetFrameApp.Pages
             {
                 mediaElement.MediaOpened += new RoutedEventHandler(MediaLoadedHandler);
                 mediaElement.MediaFailed += MediaFailedHandler;
+                mediaElement.MediaEnded += new RoutedEventHandler(MediaEndedHandler);
 
                 Debug.WriteLine(string.Format("MediaElement.BeginInit Timestamp: {0}.{1}", DateTime.Now, DateTime.Now.Millisecond));
                 mediaElement.BeginInit();
@@ -135,17 +136,25 @@ namespace EthernetFrameApp.Pages
             }
         }
 
+        private void MediaEndedHandler(object sender, RoutedEventArgs e)
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                mediaElement.Stop();
+            }));
+        }
+
         private void MediaLoadedHandler(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(string.Format("MediaElement.MediaLoaded Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
+            // Debug.WriteLine(string.Format("MediaElement.MediaLoaded Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
             // Pause it in any case
-            Debug.WriteLine(string.Format("Position: {0}", mediaElement.Position.TotalMilliseconds));
+            
             if (animationIsPlaying)
             {
                 PlayPause();
             }
             SetToCurrentFrame();
-            Debug.WriteLine(string.Format("MediaLoaded->PlayPause() Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
+            // Debug.WriteLine(string.Format("MediaLoaded->PlayPause() Timestamp: {0}.{1} # playing = {2}", DateTime.Now, DateTime.Now.Millisecond, animationIsPlaying.ToString()));
 
             if (Config.PauseDelay > 0)
             {
@@ -188,7 +197,10 @@ namespace EthernetFrameApp.Pages
             if (selectedItem.ContentVisible == Visibility.Collapsed)
             {
                 selectedItem.Open();
-                mediaElement.Pause();
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    mediaElement.Pause();
+                }));
                 CurrentInfoItem = AnimInfoList.IndexOf(selectedItem);
                 SetToCurrentFrame();
 
@@ -253,7 +265,8 @@ namespace EthernetFrameApp.Pages
                 {
                     this.Dispatcher.Invoke((Action)(() =>
                     {
-                        openNextInfoTimer.Interval = (AnimInfoList[CurrentInfoItem + 1].OpenTrigger - mediaElement.Position).TotalMilliseconds;
+                        double interval = (AnimInfoList[CurrentInfoItem + 1].OpenTrigger - mediaElement.Position).TotalMilliseconds;
+                        openNextInfoTimer.Interval = interval > 0 ? interval : 500;
                     }));
                     openNextInfoTimer.Start();
                 }
@@ -311,6 +324,10 @@ namespace EthernetFrameApp.Pages
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                mediaElement.Stop();
+            }));
             openNextInfoTimer.Stop();
             stepPauseTimer.Stop();
         }

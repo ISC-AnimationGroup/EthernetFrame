@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <allsteps>
   <step trigger="00:00:00.000">
-    <header>Set a goal</header>
-    <content>Lorem ipsum dolor sit amet</content>
+    <header>Erstellung des Ethernet-Frames im Ausgangscomputer</header>
+    <content></content>
   </step>
-  <step trigger="00:00:06.600">
-    <header>Work Hard</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:11.600">
+    <header>Abgleich mit der Source Adress Table im Switch</header>
+    <content></content>
   </step>
-  <step trigger="00:00:13.900">
-    <header>Practise</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:18.500">
+    <header>Interne Schaltung zum Zielport</header>
+    <content></content>
   </step>
-  <step trigger="00:00:24.900">
-    <header>Dont be afraid</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:25.000">
+    <header>Ethernet-Frame erreicht Zielcomputer</header>
+    <content></content>
   </step>
-  <step trigger="00:00:29.500">
-    <header>Get good grade</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:28.500">
+    <header>Erstellung des Ethernet-Frames im Ausgangscomputer</header>
+    <content></content>
   </step>
-  <step trigger="00:00:32.900">
-    <header>Succeed</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:39.570">
+    <header>Abgleich mit der Source Adress Table im Switch 1</header>
+    <content></content>
   </step>
-  <step trigger="00:00:42.600">
-    <header>Credits</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:53.570">
+    <header>Abgleich mit der Source Adress Table im Switch 2</header>
+    <content></content>
   </step>
 </allsteps>
