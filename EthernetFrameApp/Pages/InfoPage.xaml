@@ -55,10 +55,10 @@
             <TextBlock x:Name="textBlock10" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap" Text="Springe zu nächstem Schritt" VerticalAlignment="Center" Margin="10,0,0,0"/>
         </Grid>
         <TextBlock x:Name="textBlock1" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Über die App" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="32" Height="42.564" Margin="0,3.718" Width="179.527"/>
-        <Grid Grid.Column="1" Grid.Row="5" VerticalAlignment="Bottom" Height="179.96">
+        <Grid Grid.Column="1" Grid.Row="5" VerticalAlignment="Bottom">
             <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Projektarbeit ITF14A&#xA;&#xA;Konzept, Design und Entwicklung dieser Software und Animationen:&#xA;Martin Schneider&#xA;Sandro Moschkau&#xA;Florian Loos" VerticalAlignment="Top" Margin="0,0,-0.001,0"/>
             <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="0,100.76,0,0" TextWrapping="Wrap" Text="Button-Icons:&#xA;www.Icons8.com" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="0,164,0,0" TextWrapping="Wrap" Text="© 2016" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="0,154,0,10" TextWrapping="Wrap" Text="© 2016" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
 </Page>
