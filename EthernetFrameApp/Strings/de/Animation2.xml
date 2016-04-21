@@ -1,31 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <allsteps>
   <step trigger="00:00:00.000">
-    <header>Set a goal</header>
-    <content>Lorem ipsum dolor sit amet</content>
+    <header>Erstellung Ethernet-Frame</header>
+    <content></content>
   </step>
-  <step trigger="00:00:06.600">
-    <header>Work Hard</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:03.250">
+    <header>Erstellung Ethernet-Frame</header>
+    <content></content>
   </step>
-  <step trigger="00:00:13.900">
-    <header>Practise</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:13.260">
+    <header>Interne Schaltung Switch 1</header>
+    <content></content>
+  </step> 
+  <step trigger="00:00:15.570">
+    <header>Vergleich mit SAT</header>
+    <content></content>
   </step>
-  <step trigger="00:00:24.900">
-    <header>Dont be afraid</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:23.730">
+    <header>Weiterleitung zum Zielcomputer</header>
+    <content></content>
   </step>
-  <step trigger="00:00:29.500">
-    <header>Get good grade</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
-  </step>
-  <step trigger="00:00:32.900">
-    <header>Succeed</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
-  </step>
-  <step trigger="00:00:42.600">
-    <header>Credits</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
-  </step>
-</allsteps>
+</allsteps>  

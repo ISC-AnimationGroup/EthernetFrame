@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <allsteps>
   <step trigger="00:00:00.000">
-    <header>Erstellung des Ethernet-Frames im Ausgangscomputer</header>
+    <header>Erstellung Ethernet-Frame</header>
     <content></content>
   </step>
-  <step trigger="00:00:11.600">
-    <header>Abgleich mit der Source Adress Table im Switch</header>
+  <step trigger="00:00:11.200">
+    <header>Abgleich SAT im Switch 1</header>
     <content></content>
   </step>
   <step trigger="00:00:18.500">
@@ -16,16 +16,16 @@
     <header>Ethernet-Frame erreicht Zielcomputer</header>
     <content></content>
   </step>
-  <step trigger="00:00:28.500">
-    <header>Erstellung des Ethernet-Frames im Ausgangscomputer</header>
+  <step trigger="00:00:28.070"> 
+    <header>Erstellung Ethernet-Frame</header>
     <content></content>
   </step>
-  <step trigger="00:00:39.570">
-    <header>Abgleich mit der Source Adress Table im Switch 1</header>
+  <step trigger="00:00:39.470">
+    <header>Abgleich SAT im Switch 1</header>
     <content></content>
   </step>
-  <step trigger="00:00:53.570">
-    <header>Abgleich mit der Source Adress Table im Switch 2</header>
+  <step trigger="00:00:53.050">
+    <header>Abgleich SAT im Switch 2</header>
     <content></content>
   </step>
-</allsteps>
+</allsteps>  

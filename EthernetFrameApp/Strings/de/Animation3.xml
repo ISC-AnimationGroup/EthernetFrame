@@ -1,31 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <allsteps>
   <step trigger="00:00:00.000">
-    <header>Set a goal</header>
-    <content>Lorem ipsum dolor sit amet</content>
+    <header>Erstellung Ethernet-Frame</header>
+    <content></content>
   </step>
-  <step trigger="00:00:06.600">
-    <header>Work Hard</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:11.800">
+    <header>Abgleich SAT im Switch 1</header>
+    <content></content>
   </step>
-  <step trigger="00:00:13.900">
-    <header>Practise</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:27.530">
+    <header>Herauslöschen des Tags</header>
+    <content></content>
   </step>
-  <step trigger="00:00:24.900">
-    <header>Dont be afraid</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:36.700">
+    <header>Umbau der Szene</header>
+    <content></content>
   </step>
-  <step trigger="00:00:29.500">
-    <header>Get good grade</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:43.230"> 
+    <header>Erstellung Ethernet-Frame</header>
+    <content></content>
   </step>
-  <step trigger="00:00:32.900">
-    <header>Succeed</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:00:54.000">
+    <header>Abgleich SAT im Switch 1</header>
+    <content></content>
   </step>
-  <step trigger="00:00:42.600">
-    <header>Credits</header>
-    <content>Lorem ipsum dolor sit amet 2</content>
+  <step trigger="00:01:10.430">
+    <header>Herauslöschen des Tags</header>
+    <content></content>
   </step>
-</allsteps>
+  <step trigger="00:01:17.030">
+    <header>Abgleich SAT im Switch 2</header>
+    <content></content>
+  </step>
+  <step trigger="00:01:33.100">
+    <header>Herauslöschen des Tags</header>
+    <content></content>
+  </step>
+</allsteps>  
